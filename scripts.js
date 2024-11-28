@@ -31,3 +31,35 @@ function getHumanChoice() {
 
     return humanChoice;
 }
+
+function playRound(humanChoice, computerChoice) {
+    if (humanChoice == computerChoice) {
+        console.log(`${humanChoice} ties with ${computerChoice}! No points will be awarded!`);
+    }
+    else if (humanChoice == 'rock' && computerChoice == 'scissors') {
+        console.log(`${humanChoice} beats ${computerChoice}! One point will be awarded!`);
+        humanChoice++;
+    }
+    else if (humanChoice == 'paper' && computerChoice == 'rock') {
+        console.log(`${humanChoice} beats ${computerChoice}! One point will be awarded!`);
+        humanChoice++;
+    }
+    else if (humanChoice == 'scissors' && computerChoice == 'paper') {
+        console.log(`${humanChoice} beats ${computerChoice}! One point will be awarded!`);
+        humanChoice++;
+    }
+    else if (humanChoice == 'rock' && computerChoice == 'paper') {
+        console.log(`${humanChoice} loses to ${computerChoice}! One point will be awarded to the computer!`);
+        computerScore++;
+    }
+    else if (humanChoice == 'paper' && computerChoice == 'scissors') {
+        console.log(`${humanChoice} loses to ${computerChoice}! One point will be awarded to the computer!`);
+        computerScore++;
+    }
+    else if (humanChoice == 'scissors' && computerChoice == 'rock') {
+        console.log(`${humanChoice} loses to ${computerChoice}! One point will be awarded to the computer!`);
+        computerScore++;
+    }
+    round++;
+    console.log(`Round: ${round}`);
+}
