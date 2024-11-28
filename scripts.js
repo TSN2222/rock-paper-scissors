@@ -1,7 +1,3 @@
-let humanScore = 0;
-let computerScore = 0;
-let round = 0;
-
 function getComputerChoice() {
     let random = Math.floor(Math.random() * 3) + 1;
     let computerChoice = undefined;
@@ -32,34 +28,56 @@ function getHumanChoice() {
     return humanChoice;
 }
 
-function playRound(humanChoice, computerChoice) {
-    if (humanChoice == computerChoice) {
-        console.log(`${humanChoice} ties with ${computerChoice}! No points will be awarded!`);
+function playGame() {
+    let humanScore = 0;
+    let computerScore = 0;
+    let round = 0;
+
+    function playRound(humanChoice, computerChoice) {
+        if (humanChoice == computerChoice) {
+            console.log(`${humanChoice} ties with ${computerChoice}! No points will be awarded!`);
+        }
+        else if (humanChoice == 'rock' && computerChoice == 'scissors') {
+            console.log(`${humanChoice} beats ${computerChoice}! One point will be awarded to you!`);
+            humanScore++;
+        }
+        else if (humanChoice == 'paper' && computerChoice == 'rock') {
+            console.log(`${humanChoice} beats ${computerChoice}! One point will be awarded to you!`);
+            humanScore++;
+        }
+        else if (humanChoice == 'scissors' && computerChoice == 'paper') {
+            console.log(`${humanChoice} beats ${computerChoice}! One point will be awarded to you!`);
+            humanScore++;
+        }
+        else if (humanChoice == 'rock' && computerChoice == 'paper') {
+            console.log(`${humanChoice} loses to ${computerChoice}! One point will be awarded to the computer!`);
+            computerScore++;
+        }
+        else if (humanChoice == 'paper' && computerChoice == 'scissors') {
+            console.log(`${humanChoice} loses to ${computerChoice}! One point will be awarded to the computer!`);
+            computerScore++;
+        }
+        else if (humanChoice == 'scissors' && computerChoice == 'rock') {
+            console.log(`${humanChoice} loses to ${computerChoice}! One point will be awarded to the computer!`);
+            computerScore++;
+        }
+        round++;
+        console.log(`Round: ${round}`);
     }
-    else if (humanChoice == 'rock' && computerChoice == 'scissors') {
-        console.log(`${humanChoice} beats ${computerChoice}! One point will be awarded!`);
-        humanChoice++;
+
+    while (round != 5) {
+        playRound(getHumanChoice(), getComputerChoice())
     }
-    else if (humanChoice == 'paper' && computerChoice == 'rock') {
-        console.log(`${humanChoice} beats ${computerChoice}! One point will be awarded!`);
-        humanChoice++;
+
+    if(humanScore > computerScore) {
+        console.log(`You win! It was ${humanScore} to ${computerScore}`);
     }
-    else if (humanChoice == 'scissors' && computerChoice == 'paper') {
-        console.log(`${humanChoice} beats ${computerChoice}! One point will be awarded!`);
-        humanChoice++;
+    else if (humanScore < computerScore) {
+        console.log(`You lose! It was ${humanScore} to ${computerScore}`); 
     }
-    else if (humanChoice == 'rock' && computerChoice == 'paper') {
-        console.log(`${humanChoice} loses to ${computerChoice}! One point will be awarded to the computer!`);
-        computerScore++;
+    else {
+        console.log(`You tied! It was ${humanScore} to ${computerScore}`); 
     }
-    else if (humanChoice == 'paper' && computerChoice == 'scissors') {
-        console.log(`${humanChoice} loses to ${computerChoice}! One point will be awarded to the computer!`);
-        computerScore++;
-    }
-    else if (humanChoice == 'scissors' && computerChoice == 'rock') {
-        console.log(`${humanChoice} loses to ${computerChoice}! One point will be awarded to the computer!`);
-        computerScore++;
-    }
-    round++;
-    console.log(`Round: ${round}`);
 }
+
+playGame();
